@@ -6,19 +6,22 @@ import com.tobeto.bootcampProject.business.responses.create.applicant.CreateAppl
 import com.tobeto.bootcampProject.business.responses.get.applicant.GetAllApplicantResponse;
 import com.tobeto.bootcampProject.business.responses.get.applicant.GetApplicantResponse;
 import com.tobeto.bootcampProject.business.responses.update.applicant.UpdateApplicantResponse;
+import com.tobeto.bootcampProject.core.utilities.results.DataResult;
+import com.tobeto.bootcampProject.core.utilities.results.Result;
 
 import java.util.List;
 
 public interface ApplicantService {
 
-    CreateApplicantResponse add(CreateApplicantRequest request);
-    UpdateApplicantResponse update(UpdateApplicantRequest request);
+    DataResult<CreateApplicantResponse> add(CreateApplicantRequest request);
 
-    void delete(int id);
+    DataResult<UpdateApplicantResponse> update(UpdateApplicantRequest request);
 
-    List <GetAllApplicantResponse> getAll();
-    GetApplicantResponse getApplicant(int id);
+    Result delete(int id);
 
+    DataResult<List<GetAllApplicantResponse>> getAll();
+
+    DataResult<GetApplicantResponse> getById(int id);
 
 
 }

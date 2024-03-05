@@ -8,6 +8,10 @@ import com.tobeto.bootcampProject.business.responses.get.applicant.GetAllApplica
 import com.tobeto.bootcampProject.business.responses.get.applicant.GetApplicantResponse;
 import com.tobeto.bootcampProject.business.responses.update.applicant.UpdateApplicantResponse;
 import com.tobeto.bootcampProject.core.utilities.mapping.ModelMapperService;
+import com.tobeto.bootcampProject.core.utilities.results.DataResult;
+import com.tobeto.bootcampProject.core.utilities.results.Result;
+import com.tobeto.bootcampProject.core.utilities.results.SuccessDataResult;
+import com.tobeto.bootcampProject.core.utilities.results.SuccessResult;
 import com.tobeto.bootcampProject.dataaccess.abstracts.ApplicantRepository;
 import com.tobeto.bootcampProject.entities.concretes.Applicant;
 import lombok.AllArgsConstructor;
@@ -24,16 +28,16 @@ public class ApplicantManager implements ApplicantService {
     private ApplicantRepository applicantRepository;
 
     @Override
-    public CreateApplicantResponse add(CreateApplicantRequest request) {
+    public DataResult<CreateApplicantResponse> add(CreateApplicantRequest request) {
 
         Applicant applicant = modelMapperService.forRequest().map(request,Applicant.class);
         applicantRepository.save(applicant);
         CreateApplicantResponse response = modelMapperService.forResponse().map(applicant,CreateApplicantResponse.class);
-        return response;
+        return new SuccessDataResult<CreateApplicantResponse>(response,"Aday başarıyla eklendi");
     }
 
     @Override
-    public UpdateApplicantResponse update(UpdateApplicantRequest request) {
+    public DataResult<UpdateApplicantResponse> update(UpdateApplicantRequest request) {
 
         Applicant applicant = applicantRepository.findById(request.getId()).orElseThrow();
         Applicant updatedApplicant = modelMapperService.forRequest().map(request, Applicant.class);
@@ -49,28 +53,29 @@ public class ApplicantManager implements ApplicantService {
         applicantRepository.save(applicant);
 
         UpdateApplicantResponse response = modelMapperService.forResponse().map(applicant, UpdateApplicantResponse.class);
-        return response;
+        return new SuccessDataResult<UpdateApplicantResponse>(response,"Aday güncellendi");
     }
 
     @Override
-    public void delete(int id) {
-        Applicant applicant = applicantRepository.findById(id).orElseThrow();
+    public Result delete(int id) {
+        Applicant applicant = applicantRepository.getById(id);
         applicantRepository.delete(applicant);
+        return new SuccessResult("Aday silindi");
     }
 
     @Override
-    public List<GetAllApplicantResponse> getAll() {
+    public DataResult<List<GetAllApplicantResponse>> getAll() {
         List<Applicant> applicants = applicantRepository.findAll();
         List<GetAllApplicantResponse> applicantResponses = applicants.stream().map(applicant -> modelMapperService.forResponse()
                 .map(applicant, GetAllApplicantResponse.class)).collect(Collectors.toList());
 
-        return applicantResponses ;
+        return new SuccessDataResult<List<GetAllApplicantResponse>>(applicantResponses,"Tüm adaylar getirildi");
     }
 
     @Override
-    public GetApplicantResponse getApplicant(int id) {
+    public DataResult<GetApplicantResponse> getById(int id) {
         Applicant applicant = applicantRepository.getById(id);
         GetApplicantResponse response = modelMapperService.forResponse().map(applicant,GetApplicantResponse.class);
-        return response;
+        return new SuccessDataResult<GetApplicantResponse>(response,"Aday getirildi");
     }
 }

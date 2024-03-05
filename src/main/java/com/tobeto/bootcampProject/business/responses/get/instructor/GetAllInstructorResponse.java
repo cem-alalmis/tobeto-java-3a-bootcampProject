@@ -1,4 +1,4 @@
-package com.tobeto.bootcampProject.business.requests.create.instructor;
+package com.tobeto.bootcampProject.business.responses.get.instructor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,15 +8,22 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateInstructorRequest {
+public class GetAllInstructorResponse {
+    private int id;
 
     private String userName;
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-    private String nationalIdentity;
-    private String email;
-    private String password;
-    private String companyName;
 
+    private String firstName;
+
+    private String lastName;
+
+    private LocalDate dateOfBirth;
+
+    private String nationalIdentity;
+
+    private String email;
+
+    private String password;
+
+    private String companyName;
 }
