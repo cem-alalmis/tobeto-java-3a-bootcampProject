@@ -38,6 +38,7 @@ public class ApplicantsController extends BaseController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAll() {
+
         return handleDataResult(applicantService.getAll());
     }
 

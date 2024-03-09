@@ -8,14 +8,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-@Inheritance(strategy = InheritanceType.JOINED)
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "users")
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity<Integer>{
 
     @Column(name = "userName")

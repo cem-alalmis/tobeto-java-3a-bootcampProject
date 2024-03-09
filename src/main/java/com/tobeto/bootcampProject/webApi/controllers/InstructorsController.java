@@ -6,12 +6,10 @@ import com.tobeto.bootcampProject.business.requests.create.instructor.CreateInst
 import com.tobeto.bootcampProject.business.requests.update.employee.UpdateEmployeeRequest;
 import com.tobeto.bootcampProject.business.requests.update.instructor.UpdateInstructorRequest;
 import com.tobeto.bootcampProject.business.responses.create.instructor.CreateInstructorResponse;
-import com.tobeto.bootcampProject.business.responses.get.employee.GetAllEmployeeResponse;
-import com.tobeto.bootcampProject.business.responses.get.employee.GetEmployeeResponse;
 import com.tobeto.bootcampProject.business.responses.get.instructor.GetAllInstructorResponse;
 import com.tobeto.bootcampProject.business.responses.get.instructor.GetInstructorResponse;
 import com.tobeto.bootcampProject.business.responses.update.instructor.UpdateInstructorResponse;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+//import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
