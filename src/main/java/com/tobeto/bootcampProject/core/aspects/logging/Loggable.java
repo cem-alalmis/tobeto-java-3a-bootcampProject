@@ -1,0 +1,13 @@
+package com.tobeto.bootcampProject.core.aspects.logging;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD) // Seni methodlar kullanabilsin
+@Retention(RetentionPolicy.RUNTIME) // Sen uygulama çalışıyorken çalış
+public @interface Loggable {
+
+
+}

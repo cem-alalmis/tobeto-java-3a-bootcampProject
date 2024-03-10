@@ -7,6 +7,7 @@ import com.tobeto.bootcampProject.business.responses.create.applicant.CreateAppl
 import com.tobeto.bootcampProject.business.responses.get.applicant.GetAllApplicantResponse;
 import com.tobeto.bootcampProject.business.responses.get.applicant.GetApplicantResponse;
 import com.tobeto.bootcampProject.business.responses.update.applicant.UpdateApplicantResponse;
+import com.tobeto.bootcampProject.core.aspects.logging.Loggable;
 import com.tobeto.bootcampProject.core.utilities.mapping.ModelMapperService;
 import com.tobeto.bootcampProject.core.utilities.results.DataResult;
 import com.tobeto.bootcampProject.core.utilities.results.Result;
@@ -33,6 +34,7 @@ public class ApplicantManager implements ApplicantService {
         Applicant applicant = modelMapperService.forRequest().map(request,Applicant.class);
         applicantRepository.save(applicant);
         CreateApplicantResponse response = modelMapperService.forResponse().map(applicant,CreateApplicantResponse.class);
+
         return new SuccessDataResult<CreateApplicantResponse>(response,"Aday başarıyla eklendi");
     }
 
@@ -64,6 +66,7 @@ public class ApplicantManager implements ApplicantService {
     }
 
     @Override
+    @Loggable
     public DataResult<List<GetAllApplicantResponse>> getAll() {
         List<Applicant> applicants = applicantRepository.findAll();
         List<GetAllApplicantResponse> applicantResponses = applicants.stream().map(applicant -> modelMapperService.forResponse()

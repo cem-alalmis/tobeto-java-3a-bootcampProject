@@ -21,10 +21,6 @@ public class Bootcamp extends BaseEntity<Integer> {
     @Column(name="name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "instructorId")
-    private Instructor instructor;
-
     @Column(name = "startDate")
     private LocalDate startDate;
 
@@ -32,7 +28,12 @@ public class Bootcamp extends BaseEntity<Integer> {
     private LocalDate endDate;
 
     @ManyToOne
+    @JoinColumn(name = "instructorId")
+    private Instructor instructor;
+
+    @ManyToOne
     @JoinColumn(name = "bootcampStateId")
+    private BootcampState bootcampState;
 
     @OneToMany(mappedBy ="bootcamp")
     private List<Application> applications;
